@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
+
 const SpaceX = () => {
   const [launches, setLaunch] = useState(null);
 
@@ -13,8 +15,8 @@ const SpaceX = () => {
   }, []);
 
   return (
-    <div style={{ textAlign: "center", flexDirection: "column" }}>
-      <h1>List of spaceX Launches:</h1>
+    <div style={{ textAlign: "center", flexDirection: "column", backgroundColor: "#f2e4e4" }}>
+      <h1 style={{boxShadow: "0px 5px 17px -7px rgba(0, 0, 0, 0.75)" }}>List of spaceX Launches:</h1>
 
       {launches?.map((launch) => {
         console.log("Tshidiso is chechicking the launch", launch);
@@ -24,8 +26,10 @@ const SpaceX = () => {
             style={{
               heigh: 200,
               width: 200,
-              backgroundColor: "#d9dbdb",
+              backgroundColor: "#c49d9d",
               marginTop: 20,
+              textAlign: "center", 
+              flexDirection: "column"
             }}
           >
             <img alt={launch.links} src={launch.links.mission_patch}  width={170}
