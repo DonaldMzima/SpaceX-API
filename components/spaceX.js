@@ -19,13 +19,15 @@ const SpaceX = () => {
         flexDirection: "column",
         backgroundColor: "#597f85",
         display: "flex",
+        paintOrder: "fixed",
       }}
     >
       <h1
         style={{
-          boxShadow: "0px 5px 17px -7px rgba(0, 0, 0, 0.95s)",
+          boxShadow: "0px 5px 17px -7px rgba(29, 60, 55, 0.95)",
           marginLeft: 420,
-          width:500,
+          width: 500,
+          paintOrder: "fixed",
         }}
       >
         List of spaceX Launches:
@@ -38,13 +40,13 @@ const SpaceX = () => {
             key={launch.launch_date_unix}
             style={{
               heigh: 100,
-              width:500,
+              width: 500,
               backgroundColor: "#ddedf0",
               marginTop: 20,
               marginLeft: 420,
               borderRight: "solid",
               borderLeft: "solid",
-              borderRadius: 45
+              borderRadius: 45,
             }}
           >
             <img
