@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 const SpaceX = () => {
   const [launches, setLaunch] = useState(null);
 
@@ -15,8 +13,23 @@ const SpaceX = () => {
   }, []);
 
   return (
-    <div style={{ textAlign: "center", flexDirection: "column", backgroundColor: "#f2e4e4" }}>
-      <h1 style={{boxShadow: "0px 5px 17px -7px rgba(0, 0, 0, 0.75)" }}>List of spaceX Launches:</h1>
+    <div
+      style={{
+        textAlign: "center",
+        flexDirection: "column",
+        backgroundColor: "#597f85",
+        display: "flex",
+      }}
+    >
+      <h1
+        style={{
+          boxShadow: "0px 5px 17px -7px rgba(0, 0, 0, 0.95s)",
+          marginLeft: 420,
+          width:500,
+        }}
+      >
+        List of spaceX Launches:
+      </h1>
 
       {launches?.map((launch) => {
         console.log("Tshidiso is chechicking the launch", launch);
@@ -24,16 +37,22 @@ const SpaceX = () => {
           <div
             key={launch.launch_date_unix}
             style={{
-              heigh: 200,
-              width: 200,
-              backgroundColor: "#c49d9d",
+              heigh: 100,
+              width:500,
+              backgroundColor: "#ddedf0",
               marginTop: 20,
-              textAlign: "center", 
-              flexDirection: "column"
+              marginLeft: 420,
+              borderRight: "solid",
+              borderLeft: "solid",
+              borderRadius: 45
             }}
           >
-            <img alt={launch.links} src={launch.links.mission_patch}  width={170}
-                      height={180} />
+            <img
+              alt={launch.links}
+              src={launch.links.mission_patch}
+              width={200}
+              height={180}
+            />
             <p>flight nummber:{launch.flight_number}</p>-
             <p>mission name:{launch.mission_name}</p>-
             <p>rocket id:{launch.rocket.rocket_id}</p>-
