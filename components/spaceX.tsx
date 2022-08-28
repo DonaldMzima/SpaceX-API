@@ -71,12 +71,12 @@ const SpaceX = () => {
       </h1>
 
       {launches?.map((launch:LaunchType) => {
-        console.log("Tshidiso is chechicking the launch", launch);
+       
         return (
           <div
             key={launch.launch_date_unix}
             style={{
-              height: 100,
+              height: 550,
               width: 500,
               backgroundColor: "#ddedf0",
               marginTop: 20,
