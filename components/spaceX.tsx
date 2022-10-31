@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-import { MdLightMode } from 'react-icons/md'
-import { MdNightlight } from 'react-icons/md'
-import { darkModeState } from '../store/atom'
-import { useRecoilState } from 'recoil'
-
 type RocketType = {
   rocket_id: string
   rocket_name: string
@@ -54,30 +49,6 @@ const SpaceX = () => {
 
   const baseURL = 'https://api.spacexdata.com/v3/launches'
 
-  const [dark, setDark] = useRecoilState(darkModeState)
-  const [theme, setTheme] = useState<null | string | undefined>()
-  const [toggle, setToggle] = useState(theme === 'dark' ? true : false)
-
-  const colorMode = () => {
-    toggle
-      ? localStorage.setItem('darkMode', 'dark')
-      : localStorage.setItem('darkMode', 'light')
-
-    setToggle(!toggle)
-  }
-
-  useEffect(() => {
-    const darkModeValue = localStorage.getItem('darkMode')
-
-    if (darkModeValue === 'dark') {
-      setDark(darkModeValue)
-    }
-
-    if (!!theme) {
-      localStorage.setItem('darkMode', 'light')
-    }
-  }, [dark])
-
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(true))
     const cat = localStorage.getItem('darkMode')
@@ -110,26 +81,11 @@ const SpaceX = () => {
       >
         List of spaceX Launches:
       </h1>
-      <button
-        className={` p-3  rounded-full ${
-          dark ? 'bg-white  text-black' : 'bg-black text-white '
-        } absolute mx-8 right-0  `}
-        onClick={() => colorMode()}
-      >
-        {toggle ? (
-          <>
-            <MdNightlight className="text-xl" />
-          </>
-        ) : (
-          <MdLightMode className="text-xl" />
-        )}
-      </button>
 
       {launches?.map((launch: LaunchType) => {
         //  console.log ("checking",launch)
         return (
           <div
-            className={`${dark ? ' text-white ' : ' text-blueGray-700 '}`}
             key={launch.launch_date_unix}
             style={{
               height: 550,

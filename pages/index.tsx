@@ -5,11 +5,13 @@ import styles from '../styles/Home.module.css'
 import SpaceX from '../components/spaceX'
 import { render } from 'react-dom'
 import { RecoilRoot } from 'recoil'
+import Button from '../components/button'
 
 const Home: NextPage = () => {
   return (
     <RecoilRoot>
       <SpaceX />
+      <Button />
     </RecoilRoot>
   )
 }
