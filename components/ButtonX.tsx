@@ -38,6 +38,19 @@ const ButtonX = () => {
             </Button>
           </Link>
         </div>
+        <div>
+          <Link href="/svg404">
+            <Button
+              size="md"
+              height="48px"
+              width="200px"
+              bg="#709c84"
+              _hover={{ border: '2px solid #1C6FEB' }}
+            >
+              API
+            </Button>
+          </Link>
+        </div>
         <SvgComponent />
       </Stack>
     </>
