@@ -1,76 +1,54 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-
-
-type listPeople={
+type listPeople = {
   birth_year: string
-created: string
-edited: string
-eye_color: string
-films: string[]
-gender: string
-hair_color: string
-height: string
-homeworld: string
-mass: string
-name: string
-skin_color: string
-species: any[]
-starships: string []
-url: string
-
+  created: string
+  edited: string
+  eye_color: string
+  films: string[]
+  gender: string
+  hair_color: string
+  height: string
+  homeworld: string
+  mass: string
+  name: string
+  skin_color: string
+  species: any[]
+  starships: string[]
+  url: string
 }
 
+export const PeopleList = () => {
+  const [list, setList] = useState<null | listPeople[]>(null)
 
-
-
-
-const PeopleList = () => {
-  const [list, setList] = useState<null | listPeople[]>(null);
-
-  const baseURL = "https://swapi.dev/api/people";
+  const baseURL = 'https://swapi.dev/api/people'
 
   useEffect(() => {
     axios.get(`${baseURL}`).then((response) => {
-      setList(response.data.results);
-      console.log("checking a response",response)
-    });
-  }, []);
+      setList(response.data.results)
+      console.log('checking a response', response)
+    })
+  }, [])
 
   return (
-    <div
-       >
-      <h1>
-       People List:
-      </h1>
+    <div>
+      <h1>People List:</h1>
 
-      {list?.map((people:listPeople) => {
-        
-       console.log("checking birth year",people)
+      {list?.map((people: listPeople) => {
+        console.log('checking birth year', people)
         return (
-          <div
-            key={people. birth_year}>
-          
-          
-          <p>birth year:{people.eye_color}</p>-
-            <p>height:{people.gender}</p>-
-            <p>height:{people.hair_color}</p>-
-            <p>hair color:{people.height}</p>-
+          <div key={people.birth_year}>
+            <p>birth year:{people.eye_color}</p>-<p>height:{people.gender}</p>-
+            <p>height:{people.hair_color}</p>-<p>hair color:{people.height}</p>-
             <p>gender:{people.mass}</p>
-            <p>name:{people.name}</p>-
-            <p>skin color:{people.skin_color}</p>-
-            
-            
+            <p>name:{people.name}</p>-<p>skin color:{people.skin_color}</p>-
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
-
-export default PeopleList;
-
+  )
+}
 
 // birth_year: "19BBY"
 // created: "2014-12-09T13:50:51.644000Z"
