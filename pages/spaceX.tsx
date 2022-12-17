@@ -46,7 +46,7 @@ type LaunchType = {
   ships: string[]
 }
 
-export const SpaceX = () => {
+const SpaceX = () => {
   const [launches, setLaunch] = useState<null | LaunchType[]>(null)
 
   const baseURL = 'https://api.spacexdata.com/v3/launches'
@@ -118,3 +118,5 @@ export const SpaceX = () => {
     </div>
   )
 }
+
+export default SpaceX
