@@ -10,7 +10,6 @@ import Button from '../components/button'
 const Home: NextPage = () => {
   return (
     <RecoilRoot>
-      <SpaceX />
       <Button />
     </RecoilRoot>
   )
