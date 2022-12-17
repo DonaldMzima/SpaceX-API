@@ -1,6 +1,7 @@
-import { Button, Container, Link, Stack, Text } from '@chakra-ui/react'
+import { Button, Link, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import SvgComponent from './SvgComponent'
+import NavBar from './NavBar'
 
 const ButtonX = () => {
   return (

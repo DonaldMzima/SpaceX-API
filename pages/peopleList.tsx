@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import NavBar from '../components/NavBar'
 
 type listPeople = {
   birth_year: string
@@ -19,7 +20,7 @@ type listPeople = {
   url: string
 }
 
-export const PeopleList = () => {
+const PeopleList = () => {
   const [list, setList] = useState<null | listPeople[]>(null)
 
   const baseURL = 'https://swapi.dev/api/people'
@@ -33,6 +34,7 @@ export const PeopleList = () => {
 
   return (
     <div>
+      <NavBar />
       <h1>People List:</h1>
 
       {list?.map((people: listPeople) => {
@@ -49,6 +51,8 @@ export const PeopleList = () => {
     </div>
   )
 }
+
+export default PeopleList
 
 // birth_year: "19BBY"
 // created: "2014-12-09T13:50:51.644000Z"
