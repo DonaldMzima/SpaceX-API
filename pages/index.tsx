@@ -1,12 +1,15 @@
 import type { NextPage } from 'next'
-import { ChakraProvider } from '@chakra-ui/react'
+import { Box, ChakraProvider, Stack } from '@chakra-ui/react'
 import ButtonX from '../components/ButtonX'
+import SvgComponent from '../components/SvgComponent'
 
 const Home: NextPage = () => {
   return (
-    <ChakraProvider>
-      <ButtonX />
-    </ChakraProvider>
+    <Box bg={'gray'}>
+      <ChakraProvider>
+        <ButtonX />
+      </ChakraProvider>
+    </Box>
   )
 }
 
