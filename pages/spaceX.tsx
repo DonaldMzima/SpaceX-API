@@ -1,67 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { Box, Link } from '@chakra-ui/react'
 
-type RocketType = {
-  rocket_id: string
-  rocket_name: string
-  rocket_type: string
-}
-type LinkType = {
-  mission_patch: string
-  mission_patch_small: string
-  reddit_campaign: string
-  reddit_launch: string
-  reddit_recovery: string
-}
-type LaunchSiteType = {
-  site_id: string
-  site_name: string
-  site_name_long: string
-}
-type LaunchType = {
-  crew: null | any
-  details: string
-  flight_number: number
-  is_tentative: boolean
-  last_date_update: string
-  last_ll_launch_date: null | any
-  last_ll_update: null | any
-  last_wiki_launch_date: string
-  last_wiki_revision: string
-  last_wiki_update: string
-  launch_date_local: string
-  launch_date_source: String
-  launch_date_unix: number
-  launch_date_utc: string
-  launch_site: LaunchSiteType
-  launch_success: boolean
-  launch_window: number
-  launch_year: string
-  links: LinkType
-  mission_id: any[]
-  mission_name: string
-  rocket: RocketType
-  ships: string[]
-}
+import { Box, Link, Spinner, Stack } from '@chakra-ui/react'
+import { LaunchType } from '../utils/types'
+import { getLuanches } from '../utils/https'
+import { useQuery } from 'react-query'
 
 const SpaceX = () => {
-  const [launches, setLaunch] = useState<null | LaunchType[]>(null)
+  const { data, isLoading, error } = useQuery(['getLuanches '], () =>
+    getLuanches(),
+  )
 
-  const baseURL = 'https://api.spacexdata.com/v3/launches'
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(true))
-    const cat = localStorage.getItem('darkMode')
-    console.log('darkMode', cat)
-  }, [])
-
-  useEffect(() => {
-    axios.get(`${baseURL}`).then((response) => {
-      setLaunch(response.data)
-    })
-  }, [])
+  if (isLoading) {
+    return (
+      <div>
+        <Stack
+          textAlign={'center'}
+          align={'center'}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 20, md: 28 }}
+          bg={'black'}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+          <div>Loading...</div>
+        </Stack>
+      </div>
+    )
+  }
 
   return (
     <Box mt={[2, 4, 6, 8]} width={[1, 1 / 2, 1 / 4]} height="24px">
@@ -85,7 +56,7 @@ const SpaceX = () => {
           List of spaceX Launches:
         </h1>
 
-        {launches?.map((launch: LaunchType) => {
+        {data?.data.map((launch: LaunchType) => {
           //  console.log ("checking",launch)
           return (
             <div
