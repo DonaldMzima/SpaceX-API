@@ -7,10 +7,8 @@ import NavBar from '../components/NavBar'
 const Home: NextPage = () => {
   return (
     <Box bg={'gray'}>
-      <ChakraProvider>
-        <NavBar />
-        <ButtonX />
-      </ChakraProvider>
+      <NavBar />
+      <ButtonX />
     </Box>
   )
 }
