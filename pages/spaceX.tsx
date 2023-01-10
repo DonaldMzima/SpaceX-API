@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 
-import { Box, Link } from '@chakra-ui/react'
+import { Box, Link, Spinner, Stack } from '@chakra-ui/react'
 import { LaunchType } from '../utils/types'
 import { getLuanches } from '../utils/https'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery } from 'react-query'
 
 const SpaceX = () => {
   const { data, isLoading, error } = useQuery(['getLuanches '], () =>
@@ -12,7 +12,25 @@ const SpaceX = () => {
   )
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <div>
+        <Stack
+          textAlign={'center'}
+          align={'center'}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 20, md: 28 }}
+        >
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+          <div>Loading...</div>
+        </Stack>
+      </div>
+    )
   }
 
   return (
