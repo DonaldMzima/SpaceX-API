@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 
-import { Box, Link, Spinner, Stack } from '@chakra-ui/react'
+import { Box, Text, Spinner, Stack } from '@chakra-ui/react'
 import { LaunchType } from '../utils/types'
 import { getLuanches } from '../utils/https'
 import { useQuery } from 'react-query'
@@ -28,10 +28,14 @@ const SpaceX = () => {
             color="blue.500"
             size="xl"
           />
-          <div>Loading...</div>
+          <Text>Loading...</Text>
         </Stack>
       </div>
     )
+  }
+
+  if (error) {
+    return <div>An error has occurred</div>
   }
 
   return (
