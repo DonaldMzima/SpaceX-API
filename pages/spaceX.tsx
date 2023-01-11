@@ -5,6 +5,7 @@ import { Box, Text, Spinner, Stack } from '@chakra-ui/react'
 import { LaunchType } from '../utils/types'
 import { getLuanches } from '../utils/https'
 import { useQuery } from 'react-query'
+import CustomSpinner from '../components/UI/spinner'
 
 const SpaceX = () => {
   const { data, isLoading, error } = useQuery(['getLuanches '], () =>
@@ -12,26 +13,7 @@ const SpaceX = () => {
   )
 
   if (isLoading) {
-    return (
-      <div>
-        <Stack
-          textAlign={'center'}
-          align={'center'}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 28 }}
-          bg={'black'}
-        >
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-          />
-          <Text>Loading...</Text>
-        </Stack>
-      </div>
-    )
+    return <CustomSpinner text={'Loading SpaceX APIs...'} />
   }
 
   if (error) {
