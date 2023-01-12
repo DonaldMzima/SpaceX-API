@@ -1,43 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import NavBar from '../components/NavBar'
+import { listPeople } from '../utils/types'
 import { Box, Stack } from '@chakra-ui/react'
-
-type listPeople = {
-  birth_year: string
-  created: string
-  edited: string
-  eye_color: string
-  films: string[]
-  gender: string
-  hair_color: string
-  height: string
-  homeworld: string
-  mass: string
-  name: string
-  skin_color: string
-  species: any[]
-  starships: string[]
-  url: string
-}
+import CustomSpinner from '../components/UI/spinner'
+import { getLuanches } from '../utils/https'
+import { useQuery } from 'react-query'
+import NavBar from '../components/NavBar'
 
 const PeopleList = () => {
-  const [list, setList] = useState<null | listPeople[]>(null)
+  const { data, isLoading, error } = useQuery(['getLuanches '], () =>
+    getLuanches(),
+  )
 
-  const baseURL = 'https://swapi.dev/api/people'
+  if (isLoading) {
+    return <CustomSpinner text={'Loading SpaceX APIs...'} />
+  }
 
-  useEffect(() => {
-    axios.get(`${baseURL}`).then((response) => {
-      setList(response.data.results)
-      console.log('checking a response', response)
-    })
-  }, [])
+  if (error) {
+    return <div>An error has occurred</div>
+  }
 
   return (
     <div>
+      <NavBar />
       <h1>People List:</h1>
 
-      {list?.map((people: listPeople) => {
+      {data?.data.map((people: listPeople) => {
         console.log('checking birth year', people)
         return (
           <div key={people.birth_year}>
