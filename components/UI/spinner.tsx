@@ -5,7 +5,7 @@ type CustomSpinnerType = {
   text: string
 }
 
-const CustomSpinner = (props: CustomSpinnerType) => {
+const CustomSpinner = ({ text }: CustomSpinnerType) => {
   return (
     <div>
       <Stack
@@ -13,7 +13,7 @@ const CustomSpinner = (props: CustomSpinnerType) => {
         align={'center'}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
-        bg={'black'}
+        bg={'white'}
       >
         <Spinner
           thickness="4px"
@@ -22,7 +22,7 @@ const CustomSpinner = (props: CustomSpinnerType) => {
           color="blue.500"
           size="xl"
         />
-        <Text>{props.text}</Text>
+        <Text>{text}</Text>
       </Stack>
     </div>
   )
