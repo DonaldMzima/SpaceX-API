@@ -6,9 +6,11 @@ import NavBar from '../components/NavBar'
 
 const Home: NextPage = () => {
   return (
-    <Box bg={'gray'}>
-      <NavBar />
-      <ButtonX />
+    <Box mt={[0, 0, 0, 0]} width={[999, 999 / 999, 999 / 1]} height="24px">
+      <Box bg={'gray'} height="1650px" width="100%" pos="fixed">
+        <NavBar />
+        <ButtonX />
+      </Box>
     </Box>
   )
 }
