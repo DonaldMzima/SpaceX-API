@@ -13,38 +13,60 @@ const PeopleList = () => {
   )
 
   if (isLoading) {
-    return <CustomSpinner text={'Loading SpaceX APIs...'} />
+    return (
+      <Stack
+        textAlign={'center'}
+        align={'center'}
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 20, md: 28 }}
+      >
+        <CustomSpinner text={'Loading SpaceX APIs...'} />
+      </Stack>
+    )
   }
 
   if (error) {
-    return <div>An error has occurred</div>
+    return (
+      <Stack
+        textAlign={'center'}
+        align={'center'}
+        spacing={{ base: 8, md: 10 }}
+        py={{ base: 20, md: 28 }}
+      >
+        <div>An error has occurred</div>
+      </Stack>
+    )
   }
 
   return (
     <div>
       <NavBar />
-      <h1>People List:</h1>
+      <Box mt={[0, 0, 0, 0]} width={[999, 999 / 999, 999 / 1]} height="24px">
+        <h1>People List:</h1>
 
-      {data?.data.map((people: listPeople) => {
-        console.log('checking birth year', people)
-        return (
-          <div key={people.birth_year}>
-            <Box bg="#709c84" border="1px" borderColor="gray.200">
-              <Stack
-                textAlign={'center'}
-                align={'center'}
-                spacing={{ base: 8, md: 10 }}
-                py={{ base: 20, md: 28 }}
-              >
-                <p>birth year:{people.eye_color}</p>-
-                <p>height:{people.gender}</p>-<p>height:{people.hair_color}</p>-
-                <p>hair color:{people.height}</p>-<p>gender:{people.mass}</p>
-                <p>name:{people.name}</p>-<p>skin color:{people.skin_color}</p>-
-              </Stack>
-            </Box>
-          </div>
-        )
-      })}
+        {data?.data.map((people: listPeople) => {
+          console.log('checking birth year', people)
+          return (
+            <div key={people.birth_year}>
+              <Box bg="#709c84" border="1px" borderColor="gray.200">
+                <Stack
+                  textAlign={'center'}
+                  align={'center'}
+                  spacing={{ base: 8, md: 10 }}
+                  py={{ base: 20, md: 28 }}
+                >
+                  <p>birth year:{people.eye_color}</p>-
+                  <p>height:{people.gender}</p>-
+                  <p>height:{people.hair_color}</p>-
+                  <p>hair color:{people.height}</p>-<p>gender:{people.mass}</p>
+                  <p>name:{people.name}</p>-
+                  <p>skin color:{people.skin_color}</p>-
+                </Stack>
+              </Box>
+            </div>
+          )
+        })}
+      </Box>
     </div>
   )
 }
