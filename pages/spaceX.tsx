@@ -60,20 +60,7 @@ const SpaceX = () => {
       {!isLoading && data?.data?.length > 0 ? (
         data?.data.map((launch: LaunchType) => {
           return (
-            <div
-              key={launch.launch_date_unix}
-              style={{
-                height: 550,
-                width: 500,
-                backgroundColor: '#ddedf0',
-                marginTop: 20,
-                marginLeft: 420,
-                borderRight: 'solid',
-
-                borderLeft: 'solid',
-                borderRadius: 45,
-              }}
-            >
+            <div key={launch.launch_date_unix}>
               <img
                 alt={'Launch image'}
                 src={launch.links.mission_patch}
