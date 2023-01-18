@@ -3,69 +3,54 @@ import axios from 'axios'
 import { listPeople } from '../utils/types'
 import { Box, Stack } from '@chakra-ui/react'
 import CustomSpinner from '../components/UI/spinner'
-import { getLuanches } from '../utils/https'
+import { getPeople } from '../utils/https'
 import { useQuery } from 'react-query'
 import NavBar from '../components/NavBar'
 
 const PeopleList = () => {
-  const { data, isLoading, error } = useQuery(['getLuanches '], () =>
-    getLuanches(),
-  )
+  const { data, isLoading, error } = useQuery(['getPeople '], () => getPeople())
 
   if (isLoading) {
-    return (
-      <Stack
-        textAlign={'center'}
-        align={'center'}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-      >
-        <CustomSpinner text={'Loading SpaceX APIs...'} />
-      </Stack>
-    )
+    return <CustomSpinner text={'Loading SpaceX APIs...'} />
   }
 
   if (error) {
-    return (
-      <Stack
-        textAlign={'center'}
-        align={'center'}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-      >
-        <div>An error has occurred</div>
-      </Stack>
-    )
+    return <div>An error has occurred</div>
   }
+  console.log('checking data', data?.data?.results)
 
   return (
     <div>
       <NavBar />
       <Box mt={[0, 0, 0, 0]} width={[999, 999 / 999, 999 / 1]} height="24px">
         <h1>People List:</h1>
-
-        {data?.data.map((people: listPeople) => {
-          console.log('checking birth year', people)
-          return (
-            <div key={people.birth_year}>
-              <Box bg="#709c84" border="1px" borderColor="gray.200">
-                <Stack
-                  textAlign={'center'}
-                  align={'center'}
-                  spacing={{ base: 8, md: 10 }}
-                  py={{ base: 20, md: 28 }}
-                >
-                  <p>birth year:{people.eye_color}</p>-
-                  <p>height:{people.gender}</p>-
-                  <p>height:{people.hair_color}</p>-
-                  <p>hair color:{people.height}</p>-<p>gender:{people.mass}</p>
-                  <p>name:{people.name}</p>-
-                  <p>skin color:{people.skin_color}</p>-
-                </Stack>
-              </Box>
-            </div>
-          )
-        })}
+        <Box bg={'gray'} width="136%">
+          {data?.data?.results.map((people: listPeople) => {
+            console.log('data.value', data)
+            return (
+              <div key={people.birth_year}>
+                <Box bg="#980c84" border="1px" borderColor="gray.200">
+                  <Stack
+                    textAlign={'center'}
+                    align={'center'}
+                    spacing={{ base: 8, md: 10 }}
+                    py={{ base: 20, md: 28 }}
+                  >
+                    <div>
+                      <p>birth year:{people.eye_color}</p>-
+                      <p>height:{people.gender}</p>-
+                      <p>height:{people.hair_color}</p>-
+                      <p>hair color:{people.height}</p>-
+                      <p>gender:{people.mass}</p>
+                      <p>name:{people.name}</p>-
+                      <p>skin color:{people.skin_color}</p>-
+                    </div>
+                  </Stack>
+                </Box>
+              </div>
+            )
+          })}
+        </Box>
       </Box>
     </div>
   )
