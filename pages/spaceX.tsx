@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 
-import { Box, Text, Spinner, Stack } from '@chakra-ui/react'
+import { Box, Text, Spacer, Stack, Center } from '@chakra-ui/react'
 import { LaunchType } from '../utils/types'
 import { getLuanches } from '../utils/https'
 import { useQuery } from 'react-query'
@@ -61,17 +61,38 @@ const SpaceX = () => {
         data?.data.map((launch: LaunchType) => {
           return (
             <div key={launch.launch_date_unix}>
-              <img
-                alt={'Launch image'}
-                src={launch.links.mission_patch}
-                width={200}
-                height={180}
-              />
-              <p>flight nummber:{launch.flight_number}</p>-
-              <p>mission name:{launch.mission_name}</p>-
-              <p>rocket id:{launch.rocket.rocket_id}</p>-
-              <p>rocket name:{launch.rocket.rocket_name}</p>-
-              <p>rocket type:{launch.rocket.rocket_type}</p>
+              <Center>
+                <Stack spacing={{ base: 8, md: 10 }}>
+                  <Box
+                    bg="#1f1f1a"
+                    borderTopRadius="md"
+                    borderColor="gray.200"
+                    h={300}
+                    w={400}
+                  >
+                    <Center>
+                      <img
+                        alt={'Launch image'}
+                        src={launch.links.mission_patch}
+                        width={200}
+                        height={180}
+                      />
+                    </Center>
+                    <Stack
+                      direction={['column']}
+                      textAlign={'center'}
+                      color="white"
+                      spacing={{ base: 8, md: 10 }}
+                    >
+                      <p>flight nummber:{launch.flight_number}</p>-
+                      <p>mission name:{launch.mission_name}</p>-
+                      <p>rocket id:{launch.rocket.rocket_id}</p>-
+                      <p>rocket name:{launch.rocket.rocket_name}</p>-
+                      <p>rocket type:{launch.rocket.rocket_type}</p>
+                    </Stack>
+                  </Box>
+                </Stack>
+              </Center>
             </div>
           )
         })
