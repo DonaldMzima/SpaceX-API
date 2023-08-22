@@ -1,9 +1,19 @@
 import React from 'react'
-import { Box, Stack, Flex, Text } from '@chakra-ui/react'
+import { Box, Stack, Flex, Text, Center } from '@chakra-ui/react'
 import CustomSpinner from '../components/UI/spinner'
 import { getPeople } from '../utils/https'
 import { useQuery } from 'react-query'
 import NavBar from '../components/NavBar'
+import {
+  FaUser,
+  FaBirthdayCake,
+  FaEye,
+  FaRulerVertical,
+  FaGenderless,
+  FaWeightHanging,
+  FaPalette,
+  FaTint,
+} from 'react-icons/fa'
 
 const PeopleList = () => {
   const { data, isLoading, error } = useQuery(['getPeople '], () => getPeople())
@@ -27,10 +37,14 @@ const PeopleList = () => {
       >
         <NavBar />
       </Flex>
-      <Box mt={[4, 8, 12]} px={[4, 8, 12]} pt="16">
+      <Box mt={[4, 8, 12]} px={[4, 8, 12]} pt="16" height="1650px" width="100%">
         {' '}
         {/* Add padding top to account for fixed NavBar */}
-        <h1>People List:</h1>
+        <Center>
+          <Text fontSize="xl" color="blue.900" fontWeight="bold">
+            People List:
+          </Text>
+        </Center>
         <Flex flexWrap="wrap" justify="space-between">
           {data?.data?.results.map(
             (people: {
@@ -47,23 +61,38 @@ const PeopleList = () => {
                 key={people.birth_year}
                 bg="transparent" // Set background color to transparent
                 border="1px"
-                borderColor="gray.200"
+                borderColor="blue.900"
                 width={['100%', '45%', '30%']} // Adjust widths for different screen sizes
                 mb={[4, 6]}
                 p={4}
+                backgroundColor={'gray'}
                 borderRadius="md"
               >
                 <Stack spacing={2}>
                   <Text textAlign="center" fontWeight="bold">
-                    {people.name}
+                    <FaUser /> {people.name}
                   </Text>
-                  <Text>Birth year: {people.birth_year}</Text>
-                  <Text>Eye color: {people.eye_color}</Text>
-                  <Text>Hair color: {people.hair_color}</Text>
-                  <Text>Height: {people.height}</Text>
-                  <Text>Gender: {people.gender}</Text>
-                  <Text>Mass: {people.mass}</Text>
-                  <Text>Skin color: {people.skin_color}</Text>
+                  <Text>
+                    <FaBirthdayCake /> Birth year: {people.birth_year}
+                  </Text>
+                  <Text>
+                    <FaEye /> Eye color: {people.eye_color}
+                  </Text>
+                  <Text>
+                    <FaPalette /> Hair color: {people.hair_color}
+                  </Text>
+                  <Text>
+                    <FaRulerVertical /> Height: {people.height}
+                  </Text>
+                  <Text>
+                    <FaGenderless /> Gender: {people.gender}
+                  </Text>
+                  <Text>
+                    <FaWeightHanging /> Mass: {people.mass}
+                  </Text>
+                  <Text>
+                    <FaPalette /> Skin color: {people.skin_color}
+                  </Text>
                 </Stack>
               </Box>
             ),

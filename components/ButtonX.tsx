@@ -9,7 +9,7 @@ const ButtonX = () => {
       <Stack
         textAlign={'center'}
         align={'center'}
-        spacing={{ base: 8, md: 10 }}
+        spacing={{ base: 10, md: 10 }}
         py={{ base: 20, md: 28 }}
       >
         <div>
